@@ -21,7 +21,7 @@ import com.serge.noteyapp.roomdb.Note
 fun NoteListItem(note: Note){
     Card(
         elevation = CardDefaults.cardElevation(12.dp),
-        colors = CardDefaults.cardColors(note.color),
+        colors = CardDefaults.cardColors(Color(note.color)),
         border = BorderStroke(1.dp, Color.Black)
     ) {
         Column(modifier = Modifier

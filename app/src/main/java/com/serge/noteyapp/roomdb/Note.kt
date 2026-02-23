@@ -13,5 +13,5 @@ data class Note(
     val title: String,
     @ColumnInfo("note_description")
     val description: String,
-    val color: Color
+    val color: Int
 )
