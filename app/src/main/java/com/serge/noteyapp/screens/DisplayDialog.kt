@@ -22,54 +22,63 @@ import com.serge.noteyapp.viewmodel.NoteViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DisplayDialog(viewModel: NoteViewModel) {
+fun DisplayDialog(
+    viewModel: NoteViewModel,
+    showDialog: Boolean,
+    onDismiss: () -> Unit
+) {
 
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
     var selectedColor by remember { mutableStateOf(Color.Blue) }
 
 
-    AlertDialog(
-        onDismissRequest = {},
-        title = { Text("Enter Note") },
-        text = {
-            Column {
-                TextField(
-                    value = title,
-                    onValueChange = { title = it},
-                    label = { Text("Note Title") }
-                )
-                Spacer(Modifier.height(12.dp))
-                TextField(
-                    value = description,
-                    onValueChange = { description = it},
-                    label = { Text("Note Description") }
-                )
-                Spacer(Modifier.height(12.dp))
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = onDismiss,
+            title = { Text("Enter Note") },
+            text = {
+                Column {
+                    TextField(
+                        value = title,
+                        onValueChange = { title = it},
+                        label = { Text("Note Title") }
+                    )
+                    Spacer(Modifier.height(12.dp))
+                    TextField(
+                        value = description,
+                        onValueChange = { description = it},
+                        label = { Text("Note Description") }
+                    )
+                    Spacer(Modifier.height(12.dp))
 
-                //Color Picker Composable
+                    //Color Picker Composable
 
 
+                }
+            },
+
+            confirmButton = {
+                Button(onClick = {
+                    val note = Note(
+                        0,
+                        title,
+                        description,
+                        selectedColor.toArgb()
+                    )
+
+                    // Inserting into DB
+                    viewModel.insert(note)
+                }) {
+                    Text("Save Note")
+                }
+            },
+
+            dismissButton = {
+                Button(onClick = onDismiss) {
+                    Text("Cancel")
+                }
             }
-        },
-
-        confirmButton = {
-            Button(onClick = {
-                var note = Note(
-                    0,
-                    title,
-                    description,
-                    selectedColor.toArgb()
-                )
-            }) {
-                Text("Save Note")
-            }
-        },
-
-        dismissButton = {
-            Button(onClick = { }) {
-                Text("Cancel")
-            }
-        }
-    )
+        )
+    }
 }
