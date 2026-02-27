@@ -91,7 +91,7 @@ fun FAB(viewModel: NoteViewModel) {
 
     FloatingActionButton(
         onClick = { showDialog = true},
-        containerColor = Color.Blue,
+        containerColor = Color.Gray,
         contentColor = Color.White
     ) {
         Icon(
