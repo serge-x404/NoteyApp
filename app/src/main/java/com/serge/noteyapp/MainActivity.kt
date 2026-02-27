@@ -42,10 +42,9 @@ class MainActivity : ComponentActivity() {
         val noteViewModel = ViewModelProvider(this, viewModelFactory)[NoteViewModel::class.java]
 
         val note1 = Note(
-            0,
-            "serge",
-            "Kabir Pancholi who is famously known by the name of serge is an android dev",
-            "#26408B".toColorInt()
+            title = "serge",
+            description = "Kabir Pancholi who is famously known by the name of serge is an android dev",
+            color = "#26408B".toColorInt()
         )
 
         //inserting the note
