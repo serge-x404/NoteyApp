@@ -53,8 +53,10 @@ fun DisplayDialog(
                     Spacer(Modifier.height(12.dp))
 
                     //Color Picker Composable
-
-
+                    ColorPicker(
+                        selectedColor = selectedColor,
+                        onColorSelected = { selectedColor = it}
+                    )
                 }
             },
 
