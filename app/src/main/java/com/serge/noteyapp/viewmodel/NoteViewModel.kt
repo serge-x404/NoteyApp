@@ -15,4 +15,8 @@ class NoteViewModel(private val repository: NotesRepository): ViewModel() {
     fun insert(note: Note) = viewModelScope.launch {
         repository.insertNote(note)
     }
+
+    fun update(note: Note) = viewModelScope.launch {
+        repository.updateNote(note)
+    }
 }

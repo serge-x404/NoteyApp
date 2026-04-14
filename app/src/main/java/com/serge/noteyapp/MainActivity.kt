@@ -69,7 +69,7 @@ class MainActivity : ComponentActivity() {
                     val notes by noteViewModel
                         .allNotes.observeAsState(emptyList())
 
-                    DisplayNoteList(notes = notes)
+                    DisplayNoteList(notes = notes, noteViewModel)
                 }
             }
         }
